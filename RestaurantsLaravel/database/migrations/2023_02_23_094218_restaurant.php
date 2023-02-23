@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('country');
             $table->text('description');
             $table->integer('review');
+            $table->timestamps();
         });
     }
 
