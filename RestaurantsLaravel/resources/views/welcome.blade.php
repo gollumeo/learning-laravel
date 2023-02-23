@@ -14,6 +14,7 @@
         @vite('resources/css/app.css')
     </head>
     <body>
-        Hello, World!
+        <h1 class="flex items-center justify-center text-center text-5xl text-bolder text-red-500">Hello, World!</h1>
+    <p>test</p>
     </body>
 </html>
