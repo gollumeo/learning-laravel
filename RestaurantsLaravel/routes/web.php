@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\CreateController;
-use App\Models\Article;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RestaurantController;
 
@@ -23,6 +22,9 @@ Route::get('/', function () {
 // Display all our restaurants
 Route::get('/restaurants', [RestaurantController::class, 'index']);
 
+// Display the form to create a new restaurant
+Route::get('/restaurants/create', [CreateController::class, 'create']);
+
 // Display a called restaurant
 Route::get('/restaurants/{restaurant}', [RestaurantController::class, 'show']);
 
@@ -32,8 +34,5 @@ Route::put('/restaurants/update/{id}', [RestaurantController::class, 'update']);
 // Delete a called restaurant
 Route::delete('/restaurants/{id}', [RestaurantController::class, 'destroy']);
 
-// Display the form to create a new restaurant
-Route::get('/restaurants/create', [RestaurantController::class, 'create']);
-
 // Create a new restaurant
-//Route::post('/restaurants/create', [RestaurantController::class, 'create']);
+Route::post('/restaurants/create', [RestaurantController::class, 'create']);
