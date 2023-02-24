@@ -56,5 +56,18 @@ class RestaurantController extends Controller
         // delete the restaurant
         return redirect('/restaurants');
     }
+    public function store(Request $request)
+    {
+        $restau = new Restaurant();
+        $restau->name = $request->input('name');
+        $restau->address = $request->input('address');
+        $restau->zipCode = $request->input('zipCode');
+        $restau->town = $request->input('town');
+        $restau->country = $request->input('country');
+        $restau->description = $request->input('description');
+        $restau->review = $request->input('review');
+        $restau->save();
 
+        return redirect('/restaurants');
+    }
 }

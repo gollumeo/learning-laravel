@@ -35,4 +35,4 @@ Route::put('/restaurants/update/{id}', [RestaurantController::class, 'update']);
 Route::delete('/restaurants/{id}', [RestaurantController::class, 'destroy']);
 
 // Create a new restaurant
-Route::post('/restaurants/create', [RestaurantController::class, 'create']);
+Route::post('/restaurants/create', [RestaurantController::class, 'store']);
