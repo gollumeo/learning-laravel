@@ -2,9 +2,9 @@
 
 namespace App\Rules;
 
-use Illuminate\Contracts\Validation\ValidationRule;
+use Illuminate\Contracts\Validation\Rule;
 
-class NotSelect implements ValidationRule
+class NotSelect implements Rule
 {
     /**
      * Determine if the validation rule passes.
@@ -21,24 +21,10 @@ class NotSelect implements ValidationRule
     /**
      * Get the validation error message.
      *
-     * @return string|array
+     * @return string
      */
     public function message()
     {
-        return trans('validation.not_select');
-    }
-
-    /**
-     * Validate the attribute.
-     *
-     * @param  string  $attribute
-     * @param  mixed  $value
-     * @param  array  $parameters
-     * @param  \Illuminate\Validation\Validator  $validator
-     * @return bool
-     */
-    public function validate($attribute, $value, $parameters, $validator)
-    {
-        return $this->passes($attribute, $value);
+        return 'Please select a valid country';
     }
 }

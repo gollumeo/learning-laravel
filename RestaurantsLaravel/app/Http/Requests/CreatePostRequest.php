@@ -27,7 +27,7 @@ class CreatePostRequest extends FormRequest
             'description' => 'required|string',
             'review' => 'required|integer|min:0|max:10',
             'address' => 'required|string',
-            'zipCode' => 'required|integer',
+            'zipCode' => 'required|integer|digits_between:4,5',
             'town' => 'required|string',
             'country' => ['required', new NotSelect]
         ];
@@ -41,6 +41,8 @@ class CreatePostRequest extends FormRequest
             'review.required' => 'The review is required',
             'address.required' => 'The address is required',
             'zipCode.required' => 'The zip code is required',
+            'zipCode.min' => 'The zip code must be at least 4 digits long',
+            'zipCode.max' => 'The zip code must be at least 5 digits long',
             'town.required' => 'The town is required',
             'country.required' => 'The country is required',
             'country.not_select' => 'Please select a valid country',

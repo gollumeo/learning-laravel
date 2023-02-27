@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreatePostRequest;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
 
@@ -56,7 +57,7 @@ class RestaurantController extends Controller
         // delete the restaurant
         return redirect('/restaurants');
     }
-    public function store(Request $request)
+    public function store(CreatePostRequest $request)
     {
         $restau = new Restaurant();
         $restau->name = $request->input('name');
