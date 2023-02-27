@@ -28,11 +28,15 @@ Route::get('/restaurants/create', [CreateController::class, 'create']);
 // Display a called restaurant
 Route::get('/restaurants/{restaurant}', [RestaurantController::class, 'show']);
 
+// Create a new restaurant
+Route::post('/restaurants/create', [RestaurantController::class, 'store']);
+
+// Display the form to edit a called restaurant
+Route::get('/restaurants/edit/{restaurant}', [RestaurantController::class, 'edit']);
+
 // Update a called restaurant
-Route::put('/restaurants/update/{id}', [RestaurantController::class, 'update']);
+Route::patch('/restaurants/edit/{restaurant}', [RestaurantController::class, 'update']);
 
 // Delete a called restaurant
 Route::delete('/restaurants/{id}', [RestaurantController::class, 'destroy']);
 
-// Create a new restaurant
-Route::post('/restaurants/create', [RestaurantController::class, 'store']);

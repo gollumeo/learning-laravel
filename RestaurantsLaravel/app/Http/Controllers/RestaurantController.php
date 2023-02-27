@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreatePostRequest;
+use App\Http\Requests\EditPostRequest;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
 
@@ -35,18 +36,18 @@ class RestaurantController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Restaurant $restaurant)
     {
-        //
+        return view('restaurants.edit', ['restaurant' => $restaurant]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(EditPostRequest $request, string $id)
     {
-        // update the restaurant
-        return redirect('/restaurants');
+        $edited_restaurant = Restaurant::find($id);
+        return $this->validation_restaurant($request, $edited_restaurant);
     }
 
     /**
@@ -57,17 +58,29 @@ class RestaurantController extends Controller
         // delete the restaurant
         return redirect('/restaurants');
     }
+
     public function store(CreatePostRequest $request)
     {
         $restau = new Restaurant();
-        $restau->name = $request->input('name');
-        $restau->address = $request->input('address');
-        $restau->zipCode = $request->input('zipCode');
-        $restau->town = $request->input('town');
-        $restau->country = $request->input('country');
-        $restau->description = $request->input('description');
-        $restau->review = $request->input('review');
-        $restau->save();
+        return $this->validation_restaurant($request, $restau);
+    }
+
+    /**
+     * @param Request $request
+     * @param $edited_restaurant
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function validation_restaurant(Request $request, $restaurant)
+    {
+
+        $restaurant->name = $request->input('name');
+        $restaurant->address = $request->input('address');
+        $restaurant->zipCode = $request->input('zipCode');
+        $restaurant->town = $request->input('town');
+        $restaurant->country = $request->input('country');
+        $restaurant->description = $request->input('description');
+        $restaurant->review = $request->input('review');
+        $restaurant->save();
 
         return redirect('/restaurants');
     }
